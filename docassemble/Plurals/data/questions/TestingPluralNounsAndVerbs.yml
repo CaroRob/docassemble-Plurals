@@ -1,0 +1,19 @@
+question:|
+  How many children do you have? 
+fields:
+  - Number of children: child_number
+    datatype: integer
+---
+question: |
+  How many nights ${ child.does_verb("do")}  your  ${ noun_plural('child', child_number)} ${ child.does_verb("spend") } with you?
+fields:
+  - Number of nights: overnights
+    datatype: integer
+---
+mandatory: True
+event: result
+question: |
+  Result
+subquestion: |
+  My ${ child.as_noun()} ${ child.as_noun() } ${child.does_verb("spend")} with me.
+---
