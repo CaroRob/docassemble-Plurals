@@ -1,19 +1,25 @@
-question:|
+---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+  - docassemble.AKA2JBranding:custom_organization.yml
+---
+code: |
+  github_repo_name =  'docassemble-NewPackageName'
+---
+question: |
   How many children do you have? 
 fields:
   - Number of children: child_number
     datatype: integer
 ---
+mandatory: True
 question: |
-  How many nights ${ child.does_verb("do")}  your  ${ noun_plural('child', child_number)} ${ child.does_verb("spend") } with you?
+  % if child_number == 1:
+  How many nights does your child spend with you?
+  % else:
+  How many nights do your  ${ noun_plural('child', child_number) } spend with you?
+  % endif
 fields:
   - Number of nights: overnights
     datatype: integer
----
-mandatory: True
-event: result
-question: |
-  Result
-subquestion: |
-  My ${ child.as_noun()} ${ child.as_noun() } ${child.does_verb("spend")} with me.
 ---
